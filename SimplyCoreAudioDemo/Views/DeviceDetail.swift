@@ -8,6 +8,7 @@
 import SwiftUI
 import SimplyCoreAudio
 import AudioKit
+import AudioKitUI
 
 struct DeviceDetail: View {
     @ObservedObject var device: ObservableAudioDevice
