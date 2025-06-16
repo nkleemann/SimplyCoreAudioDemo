@@ -13,7 +13,7 @@ extension ObservableAudioDevice {
 
     var prettyChannelsDescription: String {
         let inChannelDescription = "\(inputChannelCount) in\(inputChannelCount != 1 ? "s" : "")"
-        let outChannelDescription = "\(outputChannelCount) out\(outputChannelCount != 1 ? "s" : "")"
+        let outChannelDescription = "\(activeOutputChannelCount) out\(activeOutputChannelCount != 1 ? "s" : "")"
 
         return "\(inChannelDescription) / \(outChannelDescription)"
     }

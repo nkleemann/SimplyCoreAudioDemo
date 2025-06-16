@@ -19,6 +19,10 @@ class ObservableAudioDevice: ObservableObject, Identifiable {
     @Published var clockSourceName: String
     @Published var inputChannelCount: UInt32
     @Published var outputChannelCount: UInt32
+    // Number of channels currently active in the device's output stream.
+    // This value may differ from `outputChannelCount` when the device
+    // is configured for mono output.
+    @Published var activeOutputChannelCount: UInt32
 
     @Published var isInputOnlyDevice: Bool
     @Published var isOutputOnlyDevice: Bool
@@ -60,6 +64,8 @@ class ObservableAudioDevice: ObservableObject, Identifiable {
 
         inputChannelCount = device.channels(scope: .input)
         outputChannelCount = device.channels(scope: .output)
+        // Query the current stream format to account for mono devices.
+        activeOutputChannelCount = device.streamFormat(scope: .output)?.mChannelsPerFrame ?? outputChannelCount
 
         nominalSampleRates = device.nominalSampleRates ?? []
         clockSourceIDs = device.clockSourceIDs ?? []
@@ -74,6 +80,13 @@ class ObservableAudioDevice: ObservableObject, Identifiable {
 
     func clockSourceName(for id: UInt32) -> String {
         device.clockSourceName(clockSourceID: id) ?? "Default"
+    }
+
+    /// Refresh channel information from the underlying device.
+    func refreshChannels() {
+        inputChannelCount = device.channels(scope: .input)
+        outputChannelCount = device.channels(scope: .output)
+        activeOutputChannelCount = device.streamFormat(scope: .output)?.mChannelsPerFrame ?? outputChannelCount
     }
 }
 
