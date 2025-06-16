@@ -7,9 +7,12 @@
 
 import SwiftUI
 import SimplyCoreAudio
+import AudioKit
+import AudioKitUI
 
 struct DeviceDetail: View {
     @ObservedObject var device: ObservableAudioDevice
+    @EnvironmentObject private var monitor: AudioMonitorManager
 
     var body: some View {
         VStack(alignment: .leading, spacing: 11) {
@@ -73,6 +76,22 @@ struct DeviceDetail: View {
                 .disabled(device.nominalSampleRates.count <= 1)
             }
 
+            Toggle("Monitor", isOn: Binding(
+                get: { monitor.isMonitoring(device) },
+                set: { newValue in
+                    if newValue {
+                        monitor.startMonitoring(device: device)
+                    } else {
+                        monitor.stopMonitoring()
+                    }
+                })
+            )
+
+            if monitor.isMonitoring(device) {
+                NodeOutputView(monitor.monitoredNode)
+                    .frame(height: 150)
+            }
+
             if device.isDefaultDevice {
                 Divider()
 
@@ -104,5 +123,6 @@ struct DeviceDetail_Previews: PreviewProvider {
 
     static var previews: some View {
         DeviceDetail(device: defaultDevice)
+            .environmentObject(AudioMonitorManager())
     }
 }
