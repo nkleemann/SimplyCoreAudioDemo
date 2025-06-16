@@ -43,6 +43,7 @@ private extension ObservableSCA {
         if let defaultInputDevice = simply.defaultInputDevice {
             for device in devices {
                 device.isDefaultInputDevice = device.id == defaultInputDevice.id
+                device.refreshChannels()
             }
         }
     }
@@ -51,6 +52,7 @@ private extension ObservableSCA {
         if let defaultOutputDevice = simply.defaultOutputDevice {
             for device in devices {
                 device.isDefaultOutputDevice = device.id == defaultOutputDevice.id
+                device.refreshChannels()
             }
         }
     }
@@ -59,6 +61,7 @@ private extension ObservableSCA {
         if let defaultSystemDevice = simply.defaultSystemOutputDevice {
             for device in devices {
                 device.isDefaultSystemOutputDevice = device.id == defaultSystemDevice.id
+                device.refreshChannels()
             }
         }
     }
@@ -77,6 +80,10 @@ private extension ObservableSCA {
                         self.deviceForDevice.removeValue(forKey: device)
                     }
                 }
+
+                for observable in self.deviceForDevice.values {
+                    observable.refreshChannels()
+                }
             },
 
             notificationCenter.addObserver(forName: .defaultInputDeviceChanged, object: nil, queue: .main) { (_) in
@@ -85,10 +92,16 @@ private extension ObservableSCA {
 
             notificationCenter.addObserver(forName: .defaultOutputDeviceChanged, object: nil, queue: .main) { (_) in
                 self.updateDefaultOutputDevice()
+                for observable in self.deviceForDevice.values {
+                    observable.refreshChannels()
+                }
             },
 
             notificationCenter.addObserver(forName: .defaultSystemOutputDeviceChanged, object: nil, queue: .main) { (_) in
                 self.updateDefaultSystemDevice()
+                for observable in self.deviceForDevice.values {
+                    observable.refreshChannels()
+                }
             },
 
             notificationCenter.addObserver(forName: .deviceNominalSampleRateDidChange, object: nil, queue: .main) { (notification) in
@@ -96,6 +109,7 @@ private extension ObservableSCA {
                     if let nominalSampleRate = _device.nominalSampleRate {
                         device.nominalSampleRate = nominalSampleRate
                     }
+                    device.refreshChannels()
                 }
             },
 
@@ -104,6 +118,7 @@ private extension ObservableSCA {
                     if let clockSourceName = _device.clockSourceName {
                         device.clockSourceName = clockSourceName
                     }
+                    device.refreshChannels()
                 }
             },
         ])
