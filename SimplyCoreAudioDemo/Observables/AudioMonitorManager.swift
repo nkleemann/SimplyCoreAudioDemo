@@ -1,18 +1,12 @@
 import Foundation
 import AudioKit
+import AVFoundation
 import SimplyCoreAudio
-    private let silentOutput: Fader
-        if let mic = engine.input {
-            silentOutput = Fader(Mixer(mic), gain: 0)
-        } else {
-            silentOutput = Fader(Mixer(), gain: 0)
-        // Route to a silent mixer so the engine can run without audio output
-        engine.output = silentOutput
 
+extension AudioEngine {
+    
+   
 
-        if let akDevice = Settings.audioInputDevices.first(where: { $0.deviceID == device.id }) {
-                try Settings.setAudioInputDevice(akDevice)
-        engine.input ?? Mixer()
     /// - Important: Call while the engine is **stopped**.
     ///              Restart afterwards (AudioKit does that for you in the previous snippet).
     public func setInputDevice(_ device: Device) throws {
