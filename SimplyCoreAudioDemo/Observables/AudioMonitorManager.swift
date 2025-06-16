@@ -1,12 +1,14 @@
 import Foundation
 import AudioKit
 import SimplyCoreAudio
-import AVFoundation
+        if let input = engine.input {
+            engine.output = input
+        }
 
 
-extension AudioEngine {
-
-    /// Change only the *input* hardware on macOS ‑‑ leaves the output side untouched.
+        if let akDevice = Settings.audioInputDevices.first(where: { $0.deviceID == device.id }) {
+                try Settings.setAudioInputDevice(akDevice)
+        engine.input ?? Mixer()
     /// - Important: Call while the engine is **stopped**.
     ///              Restart afterwards (AudioKit does that for you in the previous snippet).
     public func setInputDevice(_ device: Device) throws {
