@@ -18,7 +18,9 @@
 		45DDF6D9260F3BBD00C5D8E9 /* SimplyCoreAudio in Frameworks */ = {isa = PBXBuildFile; productRef = 45DDF6D8260F3BBD00C5D8E9 /* SimplyCoreAudio */; };
 		45DDF6DC260F3C2B00C5D8E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DDF6C7260F3B5900C5D8E9 /* ContentView.swift */; };
 		45DDF6E3260F3FA200C5D8E9 /* DeviceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DDF6E2260F3FA200C5D8E9 /* DeviceRow.swift */; };
-		45DDF6E8260F40AE00C5D8E9 /* DeviceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DDF6E7260F40AE00C5D8E9 /* DeviceDetail.swift */; };
+                45DDF6E8260F40AE00C5D8E9 /* DeviceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DDF6E7260F40AE00C5D8E9 /* DeviceDetail.swift */; };
+                46A0B0C2270FABC100C5D8E9 /* NodeOutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A0B0C1270FABC100C5D8E9 /* NodeOutputView.swift */; };
+                46A0B0D2270FABC100C5D8E9 /* AudioMonitorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A0B0D1270FABC100C5D8E9 /* AudioMonitorManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +37,9 @@
 		45DDF6CE260F3B5A00C5D8E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45DDF6CF260F3B5A00C5D8E9 /* SimplyCoreAudioDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimplyCoreAudioDemo.entitlements; sourceTree = "<group>"; };
 		45DDF6E2260F3FA200C5D8E9 /* DeviceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRow.swift; sourceTree = "<group>"; };
-		45DDF6E7260F40AE00C5D8E9 /* DeviceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetail.swift; sourceTree = "<group>"; };
+                45DDF6E7260F40AE00C5D8E9 /* DeviceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetail.swift; sourceTree = "<group>"; };
+                46A0B0C1270FABC100C5D8E9 /* NodeOutputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeOutputView.swift; sourceTree = "<group>"; };
+                46A0B0D1270FABC100C5D8E9 /* AudioMonitorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMonitorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,15 +63,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		45A526C2260FB2F300E57B19 /* Observables */ = {
-			isa = PBXGroup;
-			children = (
-				45A526C6260FB32D00E57B19 /* ObservableAudioDevice.swift */,
-				45A526C3260FB30000E57B19 /* ObservableSCA.swift */,
-			);
-			path = Observables;
-			sourceTree = "<group>";
-		};
+                45A526C2260FB2F300E57B19 /* Observables */ = {
+                        isa = PBXGroup;
+                        children = (
+                                45A526C6260FB32D00E57B19 /* ObservableAudioDevice.swift */,
+                                45A526C3260FB30000E57B19 /* ObservableSCA.swift */,
+                                46A0B0D1270FABC100C5D8E9 /* AudioMonitorManager.swift */,
+                        );
+                        path = Observables;
+                        sourceTree = "<group>";
+                };
 		45DDF6B9260F3B5900C5D8E9 = {
 			isa = PBXGroup;
 			children = (
@@ -107,17 +112,18 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		45DDF6E5260F405200C5D8E9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				45DDF6C7260F3B5900C5D8E9 /* ContentView.swift */,
-				45DDF6E2260F3FA200C5D8E9 /* DeviceRow.swift */,
-				45DDF6E7260F40AE00C5D8E9 /* DeviceDetail.swift */,
-				458775D6260F797D00816EF0 /* DeviceSubheader.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
+                45DDF6E5260F405200C5D8E9 /* Views */ = {
+                        isa = PBXGroup;
+                        children = (
+                                45DDF6C7260F3B5900C5D8E9 /* ContentView.swift */,
+                                45DDF6E2260F3FA200C5D8E9 /* DeviceRow.swift */,
+                                45DDF6E7260F40AE00C5D8E9 /* DeviceDetail.swift */,
+                                458775D6260F797D00816EF0 /* DeviceSubheader.swift */,
+                                46A0B0C1270FABC100C5D8E9 /* NodeOutputView.swift */,
+                        );
+                        path = Views;
+                        sourceTree = "<group>";
+                };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -193,17 +199,19 @@
 		45DDF6BE260F3B5900C5D8E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
-				45DDF6E8260F40AE00C5D8E9 /* DeviceDetail.swift in Sources */,
-				45A526CA260FCB6900E57B19 /* Float64+Extensions.swift in Sources */,
-				458775D7260F797D00816EF0 /* DeviceSubheader.swift in Sources */,
-				45DDF6DC260F3C2B00C5D8E9 /* ContentView.swift in Sources */,
-				458775D3260F493200816EF0 /* ObservableAudioDevice+Extensions.swift in Sources */,
-				45A526C4260FB30000E57B19 /* ObservableSCA.swift in Sources */,
-				45A526C7260FB32D00E57B19 /* ObservableAudioDevice.swift in Sources */,
-				45DDF6E3260F3FA200C5D8E9 /* DeviceRow.swift in Sources */,
-				45DDF6C6260F3B5900C5D8E9 /* SimplyCoreAudioDemoApp.swift in Sources */,
-			);
+                        files = (
+                                45DDF6E8260F40AE00C5D8E9 /* DeviceDetail.swift in Sources */,
+                                45A526CA260FCB6900E57B19 /* Float64+Extensions.swift in Sources */,
+                                458775D7260F797D00816EF0 /* DeviceSubheader.swift in Sources */,
+                                45DDF6DC260F3C2B00C5D8E9 /* ContentView.swift in Sources */,
+                                458775D3260F493200816EF0 /* ObservableAudioDevice+Extensions.swift in Sources */,
+                                45A526C4260FB30000E57B19 /* ObservableSCA.swift in Sources */,
+                                45A526C7260FB32D00E57B19 /* ObservableAudioDevice.swift in Sources */,
+                                45DDF6E3260F3FA200C5D8E9 /* DeviceRow.swift in Sources */,
+                                45DDF6C6260F3B5900C5D8E9 /* SimplyCoreAudioDemoApp.swift in Sources */,
+                                46A0B0C2270FABC100C5D8E9 /* NodeOutputView.swift in Sources */,
+                                46A0B0D2270FABC100C5D8E9 /* AudioMonitorManager.swift in Sources */,
+                        );
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
