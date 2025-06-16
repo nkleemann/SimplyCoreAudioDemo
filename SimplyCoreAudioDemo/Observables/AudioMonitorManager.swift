@@ -1,9 +1,13 @@
 import Foundation
 import AudioKit
 import SimplyCoreAudio
-        if let input = engine.input {
-            engine.output = input
-        }
+    private let silentOutput: Fader
+        if let mic = engine.input {
+            silentOutput = Fader(Mixer(mic), gain: 0)
+        } else {
+            silentOutput = Fader(Mixer(), gain: 0)
+        // Route to a silent mixer so the engine can run without audio output
+        engine.output = silentOutput
 
 
         if let akDevice = Settings.audioInputDevices.first(where: { $0.deviceID == device.id }) {
