@@ -26,10 +26,15 @@ extension AudioEngine {
         var devID = device.deviceID
         let size  = UInt32(MemoryLayout.size(ofValue: devID))
 
+        // Use element 1 so only the input side is affected.
+        // Element 0 would also switch the output device which could lead to
+        // channel mismatches on output‑only hardware.
+        let inputBus: AudioUnitElement = 1
+
         let status = AudioUnitSetProperty(ioUnit,
                                           kAudioOutputUnitProperty_CurrentDevice,
                                           kAudioUnitScope_Global,
-                                          0,
+                                          inputBus,
                                           &devID,
                                           size)
 
